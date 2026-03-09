@@ -1,0 +1,45 @@
+import java.util.*;
+
+class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int T = sc.nextInt();
+        sc.nextLine();
+
+        while(T-- > 0){
+            String s = sc.nextLine();
+            int n = s.length();
+
+            String first, second;
+
+            if(n % 2 == 0){
+                first = s.substring(0, n/2);
+                second = s.substring(n/2);
+            } else {
+                first = s.substring(0, n/2);
+                second = s.substring(n/2 + 1);
+            }
+
+            int[] count = new int[26];
+
+            for(char c : first.toCharArray()){
+                count[c - 'a']++;
+            }
+
+            for(char c : second.toCharArray()){
+                count[c - 'a']--;
+            }
+
+            boolean flag = true;
+            for(int i : count){
+                if(i != 0){
+                    flag = false;
+                    break;
+                }
+            }
+
+            if(flag) System.out.println("YES");
+            else System.out.println("NO");
+        }
+    }
+}
